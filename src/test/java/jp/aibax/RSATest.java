@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.net.URISyntaxException;
 import java.security.KeyPair;
 
 import org.apache.commons.io.HexDump;
@@ -128,7 +127,7 @@ public class RSATest
         }
     }
 
-    @Test public void testEncryptByPrivateKeyFileAndDecryptByPublicKeyFile() throws URISyntaxException
+    @Test public void testEncryptByPrivateKeyFileAndDecryptByPublicKeyFile()
     {
         String text = "Hello! World.";
 
