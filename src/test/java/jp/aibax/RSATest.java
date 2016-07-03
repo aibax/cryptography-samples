@@ -1,6 +1,7 @@
 package jp.aibax;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -105,7 +106,9 @@ public class RSATest
 
             /* キーペア生成 */
             File publicKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/publickey.der").toURI());
+            assertTrue(publicKeyFile.exists());
             File privateKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/privatekey.pk8").toURI());
+            assertTrue(privateKeyFile.exists());
             KeyPair keypair = new RSA().loadKeyPairFromFile(publicKeyFile, privateKeyFile);
 
             /* 暗号化 */
@@ -140,7 +143,9 @@ public class RSATest
 
             /* キーペア生成 */
             File publicKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/publickey.der").toURI());
+            assertTrue(publicKeyFile.exists());
             File privateKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/privatekey.pk8").toURI());
+            assertTrue(privateKeyFile.exists());
             KeyPair keypair = new RSA().loadKeyPairFromFile(publicKeyFile, privateKeyFile);
 
             /* 暗号化 */
