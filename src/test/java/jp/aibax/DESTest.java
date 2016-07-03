@@ -1,6 +1,7 @@
 package jp.aibax;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.HexDump;
@@ -39,6 +40,7 @@ public class DESTest
         catch (Exception e)
         {
             e.printStackTrace();
+            fail();
         }
     }
 }
