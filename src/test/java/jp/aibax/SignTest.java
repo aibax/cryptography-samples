@@ -21,20 +21,22 @@ public class SignTest
 
         try
         {
+            byte[] message = text.getBytes("UTF-8");
+
             /* キーペア生成 */
             KeyPair keypair = new RSA().generateKeyPair(2048);
 
             /* 署名の生成 */
-            byte[] signature = sign.sign(text, keypair.getPrivate());
+            byte[] signature = sign.sign(message, keypair.getPrivate());
             System.out.println("[Signature] " + signature.length + " Bytes (" + signature.length * 8 + " bits)");
             HexDump.dump(signature, 0, System.out, 0);
 
             /* メッセージと署名の検証 */
-            assertTrue(sign.verify(text, signature, keypair.getPublic()));
+            assertTrue(sign.verify(message, signature, keypair.getPublic()));
 
             /* 別の公開鍵によるメッセージと署名の検証 */
             KeyPair keypairAnother = new RSA().generateKeyPair(2048);
-            assertFalse(sign.verify(text, signature, keypairAnother.getPublic()));
+            assertFalse(sign.verify(message, signature, keypairAnother.getPublic()));
         }
         catch (Exception e)
         {

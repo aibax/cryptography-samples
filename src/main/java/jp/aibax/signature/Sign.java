@@ -10,14 +10,14 @@ public class Sign
     public static String ALGORITHM = "SHA256withRSA";
 
     // 署名の生成
-    public byte[] sign(String message, PrivateKey privateKey)
+    public byte[] sign(byte[] message, PrivateKey privateKey)
     {
         try
         {
             // Signatureの初期化
             Signature signature = Signature.getInstance(ALGORITHM);
             signature.initSign(privateKey);
-            signature.update(message.getBytes());
+            signature.update(message);
 
             // 署名の生成
             return signature.sign();
@@ -29,14 +29,14 @@ public class Sign
     }
 
     // メッセージと署名の検証
-    public boolean verify(String message, byte[] sign, PublicKey publicKey)
+    public boolean verify(byte[] message, byte[] sign, PublicKey publicKey)
     {
         try
         {
             // Signatureの初期化
             Signature signature = Signature.getInstance(ALGORITHM);
             signature.initVerify(publicKey);
-            signature.update(message.getBytes());
+            signature.update(message);
 
             // メッセージの検証
             return signature.verify(sign);
