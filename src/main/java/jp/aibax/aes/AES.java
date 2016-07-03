@@ -54,6 +54,11 @@ public class AES
         }
     }
 
+    public AES(byte[] key)
+    {
+        this.key = new SecretKeySpec(key, "AES");
+    }
+
     public byte[] encrypt(byte[] cleartext, byte[] iv)
     {
         byte[] encrypted = null;
