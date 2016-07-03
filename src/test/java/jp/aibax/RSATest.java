@@ -14,7 +14,7 @@ import jp.aibax.rsa.RSA;
 
 public class RSATest
 {
-    @Test public void testEncryptByPublicKeyAndDecryptByPrivateKey()
+    @Test public void testEncryptTextByPublicKeyAndDecryptByPrivateKey()
     {
         String text = "Hello! World.";
 
@@ -47,7 +47,7 @@ public class RSATest
         }
     }
 
-    @Test public void testEncryptByPrivateKeyAndDecryptByPublicKey()
+    @Test public void testEncryptTextByPrivateKeyAndDecryptByPublicKey()
     {
         String text = "Hello! World.";
 
@@ -93,7 +93,7 @@ public class RSATest
      *   $ openssl rsa -pubout -in privatekey.pem -out publickey.der -outform DER
      */
 
-    @Test public void testEncryptByPublicKeyFileAndDecryptByPrivateKeyFile()
+    @Test public void testEncryptTextByPublicKeyFileAndDecryptByPrivateKeyFile()
     {
         String text = "Hello! World.";
 
@@ -130,7 +130,7 @@ public class RSATest
         }
     }
 
-    @Test public void testEncryptByPrivateKeyFileAndDecryptByPublicKeyFile()
+    @Test public void testEncryptTextByPrivateKeyFileAndDecryptByPublicKeyFile()
     {
         String text = "Hello! World.";
 
