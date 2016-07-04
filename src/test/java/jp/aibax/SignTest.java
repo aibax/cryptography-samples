@@ -96,9 +96,9 @@ public class SignTest
             byte[] message = text.getBytes("UTF-8");
 
             /* キーペア生成 */
-            File publicKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/publickey.der").toURI());
+            File publicKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/sender/publickey.der").toURI());
             assertTrue(publicKeyFile.exists());
-            File privateKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/privatekey.pk8").toURI());
+            File privateKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/sender/privatekey.pk8").toURI());
             assertTrue(privateKeyFile.exists());
             KeyPair keypair = new RSA().loadKeyPairFromFile(publicKeyFile, privateKeyFile);
 
@@ -136,9 +136,9 @@ public class SignTest
             System.out.println("original: size = " + original.length + " bytes / hash = " + hash_original);
 
             /* キーペア生成 */
-            File publicKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/publickey.der").toURI());
+            File publicKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/sender/publickey.der").toURI());
             assertTrue(publicKeyFile.exists());
-            File privateKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/privatekey.pk8").toURI());
+            File privateKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/sender/privatekey.pk8").toURI());
             assertTrue(privateKeyFile.exists());
             KeyPair keypair = new RSA().loadKeyPairFromFile(publicKeyFile, privateKeyFile);
 
