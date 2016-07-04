@@ -25,6 +25,9 @@ repositories {
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile 'org.apache.commons:commons-lang3:3.4'
+
     // https://mvnrepository.com/artifact/commons-io/commons-io
     compile 'commons-io:commons-io:2.5'
 
