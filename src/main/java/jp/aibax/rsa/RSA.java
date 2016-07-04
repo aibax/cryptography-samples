@@ -42,9 +42,9 @@ public class RSA
         }
     }
 
-    public KeyPair loadKeyPairFromFile(File publicKeyFile, File privateKeyFile) throws IOException
+    public PublicKey loadPublicKeyFromFile(File publicKeyFile) throws IOException
     {
-        KeyPair keyPair = null;
+        PublicKey publicKey = null;
 
         try
         {
@@ -52,20 +52,41 @@ public class RSA
 
             byte[] publicKeyBytes = FileUtils.readFileToByteArray(publicKeyFile);
             KeySpec publicKeySpec = new X509EncodedKeySpec(publicKeyBytes);
-            PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
-
-            byte[] privateKeyBytes = FileUtils.readFileToByteArray(privateKeyFile);
-            KeySpec privateKeySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
-            PrivateKey privateKey = keyFactory.generatePrivate(privateKeySpec);
-
-            keyPair = new KeyPair(publicKey, privateKey);
+            publicKey = keyFactory.generatePublic(publicKeySpec);
         }
         catch (NoSuchAlgorithmException | InvalidKeySpecException e)
         {
             throw new RuntimeException(e);
         }
 
-        return keyPair;
+        return publicKey;
+    }
+
+    public PrivateKey loadPrivateKeyFromFile(File privateKeyFile) throws IOException
+    {
+        PrivateKey privateKey = null;
+
+        try
+        {
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+
+            byte[] privateKeyBytes = FileUtils.readFileToByteArray(privateKeyFile);
+            KeySpec privateKeySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
+            privateKey = keyFactory.generatePrivate(privateKeySpec);
+        }
+        catch (NoSuchAlgorithmException | InvalidKeySpecException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        return privateKey;
+    }
+
+    public KeyPair loadKeyPairFromFile(File publicKeyFile, File privateKeyFile) throws IOException
+    {
+        PublicKey publicKey = loadPublicKeyFromFile(publicKeyFile);
+        PrivateKey privateKey = loadPrivateKeyFromFile(privateKeyFile);
+        return new KeyPair(publicKey, privateKey);
     }
 
     public byte[] encrypt(byte[] cleartext, PublicKey publicKey)
