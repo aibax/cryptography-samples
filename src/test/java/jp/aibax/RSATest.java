@@ -109,7 +109,7 @@ public class RSATest
             /* キーペア生成 */
             File publicKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/recipient/publickey.der").toURI());
             assertTrue(publicKeyFile.exists());
-            File privateKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/recipient/privatekey.pk8").toURI());
+            File privateKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/recipient/privatekey.der").toURI());
             assertTrue(privateKeyFile.exists());
             KeyPair keypair = RSA.loadKeyPairFromFile(publicKeyFile, privateKeyFile);
 
@@ -146,7 +146,7 @@ public class RSATest
             /* キーペア生成 */
             File publicKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/sender/publickey.der").toURI());
             assertTrue(publicKeyFile.exists());
-            File privateKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/sender/privatekey.pk8").toURI());
+            File privateKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/sender/privatekey.der").toURI());
             assertTrue(privateKeyFile.exists());
             KeyPair keypair = RSA.loadKeyPairFromFile(publicKeyFile, privateKeyFile);
 

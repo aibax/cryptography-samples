@@ -37,14 +37,14 @@ import jp.aibax.signature.Sign;
             /* 送信者のキーペア生成 */
             File publicKeyS = new File(this.getClass().getResource("/jp/aibax/rsa/sender/publickey.der").toURI());
             assertTrue(publicKeyS.exists());
-            File privateKeyS = new File(this.getClass().getResource("/jp/aibax/rsa/sender/privatekey.pk8").toURI());
+            File privateKeyS = new File(this.getClass().getResource("/jp/aibax/rsa/sender/privatekey.der").toURI());
             assertTrue(privateKeyS.exists());
             KeyPair keyPairSender = RSA.loadKeyPairFromFile(publicKeyS, privateKeyS);
 
             /* 受信者のキーペア生成 */
             File publicKeyR = new File(this.getClass().getResource("/jp/aibax/rsa/recipient/publickey.der").toURI());
             assertTrue(publicKeyR.exists());
-            File privateKeyR = new File(this.getClass().getResource("/jp/aibax/rsa/recipient/privatekey.pk8").toURI());
+            File privateKeyR = new File(this.getClass().getResource("/jp/aibax/rsa/recipient/privatekey.der").toURI());
             assertTrue(privateKeyR.exists());
             KeyPair keyPairRecipient = RSA.loadKeyPairFromFile(publicKeyR, privateKeyR);
 
