@@ -4,6 +4,7 @@ import static javax.crypto.Cipher.DECRYPT_MODE;
 import static javax.crypto.Cipher.ENCRYPT_MODE;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
@@ -13,6 +14,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -87,6 +91,33 @@ public class RSA
         PublicKey publicKey = loadPublicKeyFromFile(publicKeyFile);
         PrivateKey privateKey = loadPrivateKeyFromFile(privateKeyFile);
         return new KeyPair(publicKey, privateKey);
+    }
+
+    public static Certificate loadCertificateFromFile(File certificateFile) throws IOException
+    {
+        Certificate certificate = null;
+
+        FileInputStream inputStream = null;
+
+        try
+        {
+            inputStream = new FileInputStream(certificateFile);
+            CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
+            certificate = certificateFactory.generateCertificate(inputStream);
+        }
+        catch (CertificateException e)
+        {
+            throw new RuntimeException(e);
+        }
+        finally
+        {
+            if (inputStream != null)
+            {
+                inputStream.close();
+            }
+        }
+
+        return certificate;
     }
 
     public static byte[] encrypt(byte[] cleartext, PublicKey publicKey)
