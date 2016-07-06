@@ -26,14 +26,14 @@ public class RSATest
             HexDump.dump(cleartext, 0, System.out, 0);
 
             /* キーペア生成 */
-            KeyPair keypair = new RSA().generateKeyPair(2048);
+            KeyPair keypair = RSA.generateKeyPair(2048);
 
             /* 暗号化 */
-            byte[] encrypted = new RSA().encrypt(cleartext, keypair.getPublic());
+            byte[] encrypted = RSA.encrypt(cleartext, keypair.getPublic());
             HexDump.dump(encrypted, 0, System.out, 0);
 
             /* 復号 */
-            byte[] decrypted = new RSA().decrypt(encrypted, keypair.getPrivate());
+            byte[] decrypted = RSA.decrypt(encrypted, keypair.getPrivate());
             HexDump.dump(decrypted, 0, System.out, 0);
 
             System.out.println("decrypted text = " + new String(decrypted, "UTF-8"));
@@ -59,14 +59,14 @@ public class RSATest
             HexDump.dump(cleartext, 0, System.out, 0);
 
             /* キーペア生成 */
-            KeyPair keypair = new RSA().generateKeyPair(2048);
+            KeyPair keypair = RSA.generateKeyPair(2048);
 
             /* 暗号化 */
-            byte[] encrypted = new RSA().encrypt(cleartext, keypair.getPrivate());
+            byte[] encrypted = RSA.encrypt(cleartext, keypair.getPrivate());
             HexDump.dump(encrypted, 0, System.out, 0);
 
             /* 復号 */
-            byte[] decrypted = new RSA().decrypt(encrypted, keypair.getPublic());
+            byte[] decrypted = RSA.decrypt(encrypted, keypair.getPublic());
             HexDump.dump(decrypted, 0, System.out, 0);
 
             System.out.println("decrypted text = " + new String(decrypted, "UTF-8"));
@@ -109,14 +109,14 @@ public class RSATest
             assertTrue(publicKeyFile.exists());
             File privateKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/recipient/privatekey.pk8").toURI());
             assertTrue(privateKeyFile.exists());
-            KeyPair keypair = new RSA().loadKeyPairFromFile(publicKeyFile, privateKeyFile);
+            KeyPair keypair = RSA.loadKeyPairFromFile(publicKeyFile, privateKeyFile);
 
             /* 暗号化 */
-            byte[] encrypted = new RSA().encrypt(cleartext, keypair.getPublic());
+            byte[] encrypted = RSA.encrypt(cleartext, keypair.getPublic());
             HexDump.dump(encrypted, 0, System.out, 0);
 
             /* 復号 */
-            byte[] decrypted = new RSA().decrypt(encrypted, keypair.getPrivate());
+            byte[] decrypted = RSA.decrypt(encrypted, keypair.getPrivate());
             HexDump.dump(decrypted, 0, System.out, 0);
 
             System.out.println("decrypted text = " + new String(decrypted, "UTF-8"));
@@ -146,14 +146,14 @@ public class RSATest
             assertTrue(publicKeyFile.exists());
             File privateKeyFile = new File(this.getClass().getResource("/jp/aibax/rsa/sender/privatekey.pk8").toURI());
             assertTrue(privateKeyFile.exists());
-            KeyPair keypair = new RSA().loadKeyPairFromFile(publicKeyFile, privateKeyFile);
+            KeyPair keypair = RSA.loadKeyPairFromFile(publicKeyFile, privateKeyFile);
 
             /* 暗号化 */
-            byte[] encrypted = new RSA().encrypt(cleartext, keypair.getPrivate());
+            byte[] encrypted = RSA.encrypt(cleartext, keypair.getPrivate());
             HexDump.dump(encrypted, 0, System.out, 0);
 
             /* 復号 */
-            byte[] decrypted = new RSA().decrypt(encrypted, keypair.getPublic());
+            byte[] decrypted = RSA.decrypt(encrypted, keypair.getPublic());
             HexDump.dump(decrypted, 0, System.out, 0);
 
             System.out.println("decrypted text = " + new String(decrypted, "UTF-8"));

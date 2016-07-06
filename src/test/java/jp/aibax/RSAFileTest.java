@@ -39,14 +39,14 @@ import jp.aibax.signature.Sign;
             assertTrue(publicKeyS.exists());
             File privateKeyS = new File(this.getClass().getResource("/jp/aibax/rsa/sender/privatekey.pk8").toURI());
             assertTrue(privateKeyS.exists());
-            KeyPair keyPairSender = new RSA().loadKeyPairFromFile(publicKeyS, privateKeyS);
+            KeyPair keyPairSender = RSA.loadKeyPairFromFile(publicKeyS, privateKeyS);
 
             /* 受信者のキーペア生成 */
             File publicKeyR = new File(this.getClass().getResource("/jp/aibax/rsa/recipient/publickey.der").toURI());
             assertTrue(publicKeyR.exists());
             File privateKeyR = new File(this.getClass().getResource("/jp/aibax/rsa/recipient/privatekey.pk8").toURI());
             assertTrue(privateKeyR.exists());
-            KeyPair keyPairRecipient = new RSA().loadKeyPairFromFile(publicKeyR, privateKeyR);
+            KeyPair keyPairRecipient = RSA.loadKeyPairFromFile(publicKeyR, privateKeyR);
 
             /* 処理対象のファイルの読み込み */
             File file = new File(this.getClass().getResource("/lena.tif").toURI());
@@ -120,7 +120,7 @@ import jp.aibax.signature.Sign;
             random.nextBytes(iv);
 
             /* AESの暗号鍵とIVを受信者の公開鍵を使用してRSAで暗号化 */
-            byte[] encryptedKey = new RSA().encrypt(ArrayUtils.addAll(key, iv), recipientPublicKey);
+            byte[] encryptedKey = RSA.encrypt(ArrayUtils.addAll(key, iv), recipientPublicKey);
 
             /* 送信者の秘密鍵を使用してデジタル署名を生成 */
             byte[] signature = new Sign().sign(original, senderPrivateKey);
@@ -194,7 +194,7 @@ import jp.aibax.signature.Sign;
              */
 
             /* AESの暗号鍵とIVを受信者の秘密鍵を使用してRSAで復号 */
-            byte[] decryptedKey = new RSA().decrypt(encryptedKey, recipientPrivateKey);
+            byte[] decryptedKey = RSA.decrypt(encryptedKey, recipientPrivateKey);
             byte[] key = ArrayUtils.subarray(decryptedKey, 0, AES_KEY_SIZE);
             byte[] iv = ArrayUtils.subarray(decryptedKey, AES_KEY_SIZE, AES_KEY_SIZE + AES_BLOCK_SIZE);
 

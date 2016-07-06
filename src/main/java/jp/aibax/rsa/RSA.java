@@ -27,7 +27,7 @@ import org.apache.commons.io.FileUtils;
 
 public class RSA
 {
-    public KeyPair generateKeyPair(int keysize)
+    public static KeyPair generateKeyPair(int keysize)
     {
         try
         {
@@ -42,7 +42,7 @@ public class RSA
         }
     }
 
-    public PublicKey loadPublicKeyFromFile(File publicKeyFile) throws IOException
+    public static PublicKey loadPublicKeyFromFile(File publicKeyFile) throws IOException
     {
         PublicKey publicKey = null;
 
@@ -62,7 +62,7 @@ public class RSA
         return publicKey;
     }
 
-    public PrivateKey loadPrivateKeyFromFile(File privateKeyFile) throws IOException
+    public static PrivateKey loadPrivateKeyFromFile(File privateKeyFile) throws IOException
     {
         PrivateKey privateKey = null;
 
@@ -82,14 +82,14 @@ public class RSA
         return privateKey;
     }
 
-    public KeyPair loadKeyPairFromFile(File publicKeyFile, File privateKeyFile) throws IOException
+    public static KeyPair loadKeyPairFromFile(File publicKeyFile, File privateKeyFile) throws IOException
     {
         PublicKey publicKey = loadPublicKeyFromFile(publicKeyFile);
         PrivateKey privateKey = loadPrivateKeyFromFile(privateKeyFile);
         return new KeyPair(publicKey, privateKey);
     }
 
-    public byte[] encrypt(byte[] cleartext, PublicKey publicKey)
+    public static byte[] encrypt(byte[] cleartext, PublicKey publicKey)
     {
         byte[] encrypted = null;
 
@@ -108,7 +108,7 @@ public class RSA
         return encrypted;
     }
 
-    public byte[] encrypt(byte[] cleartext, PrivateKey privateKey)
+    public static byte[] encrypt(byte[] cleartext, PrivateKey privateKey)
     {
         byte[] encrypted = null;
 
@@ -127,7 +127,7 @@ public class RSA
         return encrypted;
     }
 
-    public byte[] decrypt(byte[] encrypted, PrivateKey privateKey)
+    public static byte[] decrypt(byte[] encrypted, PrivateKey privateKey)
     {
         byte[] decrypted = null;
 
@@ -147,7 +147,7 @@ public class RSA
         return decrypted;
     }
 
-    public byte[] decrypt(byte[] encrypted, PublicKey publicKey)
+    public static byte[] decrypt(byte[] encrypted, PublicKey publicKey)
     {
         byte[] decrypted = null;
 
